@@ -1486,7 +1486,7 @@ def display_menu(db, original=None):
 
     print(set_color("≈" * 60, MANGO))
     print(set_color(f"  {APP} v{VERSION} {PURPLE}(by djoshi){RESET}:", MANGO))
-    print(set_color("  Rekordbox 6+7 duplicate track remover", MANGO))
+    print(set_color("  Rekordbox 6+7 duplicate track remover", LIME))
     print(set_color("≈" * 60, MANGO))
     print()
     say("  NOTE: rb ghostbuster begins on a copy of your rekordbox")
@@ -1495,7 +1495,6 @@ def display_menu(db, original=None):
     say("  Your music files are NOT touched unless you move them")
     say("  to the quarantine folder yourself.")
     say("  Keep a backup anyway. An extra copy never hurts.", MANGO)
-    say("  " + "=" * 58, MANGO)
     say("  TESTED ON WINDOWS ONLY, not verified on macOS or Linux yet", LIME)
     say("  " + "=" * 58, MANGO)
     print()
@@ -1510,7 +1509,7 @@ def display_menu(db, original=None):
         say("  Database: not set yet (use option 8)")
         print()
 
-    print(set_color("  Please select an option:", LIME))
+    print(set_color("  Enter your choice (1-11) here:", LIME))
     print()
     print(f"  {MANGO}1{RESET}. {LIME}Test run - answer questions, show duplicates{RESET}")
     print(f"     {LIME}(library not changed){RESET}")
