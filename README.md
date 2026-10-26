@@ -20,7 +20,7 @@ Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jone
 
 ## What it does
 
-It reads your library, finds tracks that are really the same song, and groups them up. You pick which copy stays. The rest come out, and their playlist spots, tags and play history go to the copy you keep.
+It reads your library, finds tracks that are really the same song, and groups them up. You pick which copy stays. The rest drop out, and their playlist spots, tags and play history go to the copy you keep.
 
 Nothing gets deleted off your disk. Music files that only the removed copies used go into a `quarantine` folder, and you can move them back later.
 
