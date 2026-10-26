@@ -10,11 +10,11 @@ Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jone
 
 **Download:** [rb-ghostbuster-main.zip](https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip) · Repo: https://github.com/d-j-o-s-h-i/rb-ghostbuster
 
-> ⚠️ **Close rekordbox first.** Quit rekordbox and rekordboxAgent before you start. The tool needs `master.db` to itself.
+> ⚠️ **Close rekordbox first::** Quit rekordbox and rekordboxAgent before you start. The tool needs `master.db` to itself.
 
-> ⚠️ **Windows only, for now.** That's the only place it's been tested. It may work on macOS and Linux but nobody has tried it there yet.
+> ⚠️ **Windows only atm** That's the only place it's been tested. It may work on macOS and Linux but nobody has tried it there yet.
 
-> ⚠️ **Turn off Cloud Library Sync.** And any other sync to a second device, while you're cleaning. rb ghostbuster writes straight into `master.db`, so a sync running at the same time can put the tracks right back.
+> ⚠️ **Turn off Cloud Library Sync** And any other sync to a second device, while you're cleaning. rb ghostbuster writes straight into `master.db`, so a sync running at the same time can put the tracks right back.
 
 ---
 
