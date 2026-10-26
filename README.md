@@ -2,12 +2,12 @@
 
 by **djoshi**
 
-Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and lets you undo changes. Read more below :::)
+Finds duplicate tracks in your rekordbox 6+7 library and clears them out. Works on a copy, backs up first, and lets you undo changes. Read more below :::)
 
 <img src="screenshots/menu.png" width="471" alt="rb ghostbuster main menu">
 
 
-Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) for opening the encrypted database.
+Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) which helped opening the encrypted database.
 
 **Download:** [rb-ghostbuster-main.zip](https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip) · Repo: https://github.com/d-j-o-s-h-i/rb-ghostbuster
 > ⚠️ **Windows only atm.** Tested on Win11. It may work on macOS and Linux as its Python but nobody has tried it there yet. Lemme know if you can!
@@ -22,7 +22,7 @@ Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jone
 
 Like most people, i am frustrated with rekordbox (and the company as a whole). In this case, specifically how it doesn't deal with duplicates at all (which can stack up over the years in your library) and how other tools on here don't really do their job, at least for me. This is how this little program was born:::
 
-rb ghostbuster reads your library database, finds tracks that are really the actually the same song, and groups them up. In hard cases, you pick which copy stays. The rest drop out, and their playlist spots, tags and play history go to the copy you keep.
+rb ghostbuster reads your library database, finds tracks that are really the actual the same song, and groups them up. In hard cases, you pick which copy stays. The rest drop out, and their playlist spots, tags and play history go to the copy you keep.
 
 For example, "C:\Users\joshi\Music\0426\Just an Illusion.m4a" as well as "C:\Users\joshi\Download\just-an-illusion.mp3" exist simultaneously and you've put both of them in 5 different playlists. rb ghostbuster will find both, compare, and decide which version to keep and re-write all 10 playlist paths to one version only. See 'How Duplicate Detection Works', down this doc.
 Nothing gets deleted off your disk. Music files that only the removed entries used go into a `quarantine` folder, and you can move them back later. So far, my own rekordbox is 600 songs lighter 🌬️
