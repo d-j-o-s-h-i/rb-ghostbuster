@@ -1485,9 +1485,8 @@ def display_menu(db, original=None):
     clear_screen()
 
     print(set_color("=" * 60, MANGO))
-    print(set_color(f"  {APP}: Rekordbox 6+7", MANGO))
-    print(set_color(f"  duplicate track remover v{VERSION} "
-                    f"{PURPLE}(by djoshi){RESET}", MANGO))
+    print(set_color(f"  {APP} v{VERSION} {PURPLE}(by djoshi){RESET}", MANGO))
+    print(set_color("  Rekordbox 6+7 duplicate track remover", MANGO))
     print(set_color("=" * 60, MANGO))
     print()
     say("  NOTE: rb ghostbuster begins on a copy of your rekordbox")
