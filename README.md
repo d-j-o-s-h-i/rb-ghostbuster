@@ -4,6 +4,8 @@ by **djoshi**
 
 Remove duplicate tracks from your rekordbox 6/7 music library — safely, with backups and undo.
 
+Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox)'s notes on the rekordbox database and [sqlcipher3](https://pypi.org/project/sqlcipher3-wheels/) for encrypted SQLite access.
+
 **Download:** [rb-ghostbuster-main.zip](https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip) · Repo: https://github.com/d-j-o-s-h-i/rb-ghostbuster
 
 > ⚠️ **Important:** Close rekordbox **and rekordboxAgent** before running this tool. It needs exclusive access to your `master.db` database.
@@ -20,66 +22,7 @@ rb ghostbuster scans your rekordbox library for duplicate tracks using title, ar
 
 **Cue points do not move.** When a copy is removed, its cue points, beat grid and analysis data go with it — the copy you keep keeps its own cues. That is why the tool recommends the copy with the most cue points. Pick carefully if two copies have very different cues.
 
----
-
-## What the screens look like
-
-### Welcome screen
-
-```
-============================================================
-  Welcome to rb ghostbuster v0.2.0 (by djoshi)
-  Duplicate Track Remover for rekordbox 6/7
-============================================================
-
-This program works on a copy of your rekordbox library,
-never on the original. Nothing is changed without asking you.
-
-Is rekordbox completely closed? (y/n): y
-
-Found rekordbox library at: C:\Users\<name>\AppData\Roaming\Pioneer\rekordbox\master.db
-
-Create a copy of your library into the
-rb ghostbuster folder?
-rb ghostbuster is never working on your original library.
-Create the copy now? (y/n): y
-Copying, please wait...
-Copy ready (1234 tracks): C:\path\to\rb ghostbuster\master.db
-Your original library was not touched.
-```
-
-### Main menu
-
-```
-============================================================
-  rb ghostbuster - Duplicate Track Remover v0.2.0 (by djoshi)
-============================================================
-
-  NOTE: rb ghostbuster works on your library DATABASE (master.db).
-  Your music files are NOT touched unless you move them to the
-  quarantine folder yourself.
-  ==========================================================
-  TESTED ON WINDOWS ONLY - not verified on macOS or Linux
-  ==========================================================
-
-  Please select an option:
-
-  1. Test run - answer questions, show duplicates (library not changed)
-  2. Full analysis - detect and resolve duplicates
-  3. Write the cleaned copy back to rekordbox
-  4. Quarantine folder (view, change, move files back)
-  5. Backup database
-  6. Restore from backup (copy or rekordbox library)
-  7. View current settings
-  8. Set/change database path
-  9. Set/change SQLCipher key
-  10. Forget saved answers (ask everything again)
-  11. Quit
-
-============================================================
-
-Enter your choice (1-11): _
-```
+**Built on other people's work.** The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox), which documents the rekordbox 6/7 database schema; [sqlcipher3](https://pypi.org/project/sqlcipher3-wheels/) opens the encrypted `master.db` and is installed automatically on first run. Everything else — duplicate matching, quarantine, backups, undo, the interface — is the Python standard library. Thanks to both.
 
 ---
 
@@ -179,6 +122,67 @@ Wherever you move the project folder, the database and settings stay with it.
 
 ---
 
+## What the screens look like
+
+### Welcome screen
+
+```
+============================================================
+  Welcome to rb ghostbuster v0.2.0 (by djoshi)
+  Duplicate Track Remover for rekordbox 6/7
+============================================================
+
+This program works on a copy of your rekordbox library,
+never on the original. Nothing is changed without asking you.
+
+Is rekordbox completely closed? (y/n): y
+
+Found rekordbox library at: C:\Users\<name>\AppData\Roaming\Pioneer\rekordbox\master.db
+
+Create a copy of your library into the
+rb ghostbuster folder?
+rb ghostbuster is never working on your original library.
+Create the copy now? (y/n): y
+Copying, please wait...
+Copy ready (1234 tracks): C:\path\to\rb ghostbuster\master.db
+Your original library was not touched.
+```
+
+### Main menu
+
+```
+============================================================
+  rb ghostbuster - Duplicate Track Remover v0.2.0 (by djoshi)
+============================================================
+
+  NOTE: rb ghostbuster works on your library DATABASE (master.db).
+  Your music files are NOT touched unless you move them to the
+  quarantine folder yourself.
+  ==========================================================
+  TESTED ON WINDOWS ONLY - not verified on macOS or Linux
+  ==========================================================
+
+  Please select an option:
+
+  1. Test run - answer questions, show duplicates (library not changed)
+  2. Full analysis - detect and resolve duplicates
+  3. Write the cleaned copy back to rekordbox
+  4. Quarantine folder (view, change, move files back)
+  5. Backup database
+  6. Restore from backup (copy or rekordbox library)
+  7. View current settings
+  8. Set/change database path
+  9. Set/change SQLCipher key
+  10. Forget saved answers (ask everything again)
+  11. Quit
+
+============================================================
+
+Enter your choice (1-11): _
+```
+
+---
+
 ## Menu Options
 
 | # | Option | What it does |
@@ -268,14 +272,6 @@ rb ghostbuster/
 | Double-click doesn't open a window | Run from terminal instead: `python "rb ghostbuster.pyw"` |
 | "already running in another window" | Close the other rb ghostbuster window — the lock is released when it exits |
 | Asked about the same songs again | Menu option 10 restores the questions; delete `decisions_old_*.json` to drop the old answers for good |
-
----
-
-## Credits
-
-- **pyrekordbox** ([dylanljones/pyrekordbox](https://github.com/dylanljones/pyrekordbox)) — for insights into the rekordbox database structure
-- **sqlcipher3** — for encrypted SQLite database access to rekordbox's `master.db`
-- **Python standard library** — `json`, `os`, `sys`, `platform`, `re`, `unicodedata`, `collections`, `itertools`, `shutil`, `datetime`, `ctypes`, `csv`, `glob`, `subprocess`
 
 ---
 
