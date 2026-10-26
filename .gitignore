@@ -1,0 +1,21 @@
+# Your rekordbox library and everything rb ghostbuster makes from it
+master.db*
+*.rbg-tmp
+*.rbg-old
+.rbg.lock
+
+# Your personal data - never commit these
+settings.json
+decisions.json
+decisions_old_*.json
+duplicates_log.csv
+quarantine_log.csv
+files_to_delete.txt
+backups/
+quarantine/
+from_other_user/
+
+# Local Python environment
+.venv/
+__pycache__/
+*.pyc

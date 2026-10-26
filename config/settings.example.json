@@ -1,0 +1,10 @@
+{
+  "db": "C:\\path\\to\\rb ghostbuster\\master.db",
+  "original_library": "C:\\Users\\<name>\\AppData\\Roaming\\Pioneer\\rekordbox\\master.db",
+  "quarantine_folder": null,
+  "sqlcipher_key": "402fd482c38817c35ffa8ffb8c7d93143b749e7d315df7a81732a1ff43608497",
+  "home": "C:\\Users\\<name>",
+  "original_fingerprint": [0, 0, 0, 0],
+  "pending_writeback": false,
+  "pending_quarantine": []
+}
