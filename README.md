@@ -2,7 +2,7 @@
 
 by **djoshi**
 
-Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and lets you undo changes.
+Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and lets you undo changes. Read more below :::)
 
 <img src="screenshots/menu.png" width="471" alt="rb ghostbuster main menu">
 
