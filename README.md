@@ -10,9 +10,9 @@ Finds duplicate tracks in your rekordbox 6+7 library and clears them out. Works 
 Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) which helped opening the encrypted database.
 
 **Download:** [rb-ghostbuster-main.zip](https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip) · Repo: https://github.com/d-j-o-s-h-i/rb-ghostbuster
-> ⚠️ **Windows only atm.** Tested on Win11. It may work on macOS and Linux as its Python but nobody has tried it there yet. Lemme know if you can!
+> ⚠️ **Windows only atm.** Tested on Win11. It may work on macOS as its Python but nobody has tried it there yet. Lemme know if you can!
 
-> ⚠️ **Close rekordbox first::** Quit rekordbox and rekordboxAgent before you start. The tool needs `master.db` so we're not getting inbetween a child custody fight like some of us
+> ⚠️ **Close rekordbox first::** Quit rekordbox and rekordboxAgent before you start. The tool needs access to copy `master.db` so we're not getting inbetween a child custody fight like some of us
 
 > ⚠️ **Turn off Cloud Library Sync** And any other sync to a second device, while you're cleaning. rb ghostbuster writes straight into `master.db`, so a sync running at the same time can put the tracks right back.
 
@@ -48,12 +48,11 @@ All you need is Python. The one library it needs installs itself the first time 
 3. Tick **"Add Python to PATH"** on the first screen. Don't skip that one.
 4. Hit Install Now
 
-**macOS / Linux:**
+**macOS**
 Python is usually already there. You check it in Terminal, which is just a window where you type commands.
 
 1. Open Terminal:
    - **macOS:** `Cmd + Space`, type `Terminal`, press Enter.
-   - **Linux:** `Ctrl + Alt + T`, or find Terminal in your app menu.
 2. Type this and press Enter:
 
    ```bash
