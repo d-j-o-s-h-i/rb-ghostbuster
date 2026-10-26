@@ -22,7 +22,7 @@ rb ghostbuster scans your rekordbox library for duplicate tracks using title, ar
 
 **Cue points do not move.** When a copy is removed, its cue points, beat grid and analysis data go with it — the copy you keep keeps its own cues. That is why the tool recommends the copy with the most cue points. Pick carefully if two copies have very different cues.
 
-Built on other people's work: the table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database schema; [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer, packaged as the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) by laggykiller, opens the encrypted `master.db` and is installed automatically on first run. Everything else — duplicate matching, quarantine, backups, undo, the interface — is the Python standard library. Thanks to both.
+Built on other people's work: the table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database schema; [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer, packaged as the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) by laggykiller, opens the encrypted `master.db` and is installed automatically on first run. Everything else — duplicate matching, quarantine, backups, undo, the interface — is the Python standard library. Thanks to both. Lemme know how we can integrate it into your tool =)
 
 ---
 
