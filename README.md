@@ -23,8 +23,8 @@ Like most people, i am frustrated with rekordbox (and the company as a whole). I
 
 rb ghostbuster reads your library database, finds tracks that are really the actually the same song, and groups them up. In hard cases, you pick which copy stays. The rest drop out, and their playlist spots, tags and play history go to the copy you keep.
 
-For example, "C:\Users\joshi\Music\0426\Just an Illusion.m4a" as well as "C:\Users\joshi\Download\just-an-illusion.mp3" exist simultaneously and you've put both of them in 5 different playlists. rb ghostbuster will find both, compare, and decide which version to keep and direct all playlist paths to one version only. See 'How Duplicate Detection Works', down this doc.
-Nothing gets deleted off your disk. Music files that only the removed entries used go into a `quarantine` folder, and you can move them back later.
+For example, "C:\Users\joshi\Music\0426\Just an Illusion.m4a" as well as "C:\Users\joshi\Download\just-an-illusion.mp3" exist simultaneously and you've put both of them in 5 different playlists. rb ghostbuster will find both, compare, and decide which version to keep and direct all 5 playlist paths to one version only. See 'How Duplicate Detection Works', down this doc.
+Nothing gets deleted off your disk. Music files that only the removed entries used go into a `quarantine` folder, and you can move them back later. So far, my own rekordbox is 600 songs lighter 🌬️
 
 One thing to know before you say yes: cue points don't come along. A removed copy takes its cues, beat grid and analysis data with it, and only the copy you keep keeps its own. That's why the tool suggests the one with the most cue points. If two copies have very different cues, look before you leap. I honestly don't think merging cue points is a useful feature.
 
