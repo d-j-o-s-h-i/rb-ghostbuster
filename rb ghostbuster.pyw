@@ -1484,7 +1484,7 @@ def display_menu(db, original=None):
     _color_i = 0
     clear_screen()
 
-    print(set_color("=" * 60, MANGO))
+    print(set_color("≈" * 60, MANGO))
     print(set_color(f"  {APP} v{VERSION} {PURPLE}(by djoshi){RESET}:", MANGO))
     print(set_color("  Rekordbox 6+7 duplicate track remover", MANGO))
     print(set_color("≈" * 60, MANGO))
@@ -1494,10 +1494,11 @@ def display_menu(db, original=None):
     say("  through option 3.")
     say("  Your music files are NOT touched unless you move them")
     say("  to the quarantine folder yourself.")
-    say("  Keep a backup anyway. An extra copy never hurts.")
-    say("  " + "=" * 58)
-    say("  TESTED ON WINDOWS ONLY - not verified on macOS or Linux")
-    say("  " + "=" * 58)
+    say("  Keep a backup anyway. An extra copy never hurts.", MANGO)
+    say("  " + "=" * 58, MANGO)
+    say("  TESTED ON WINDOWS ONLY - not verified", LIME)
+    say("  on macOS or Linux yet", LIME)
+    say("  " + "=" * 58, MANGO)
     print()
 
     if db and os.path.isfile(db):
