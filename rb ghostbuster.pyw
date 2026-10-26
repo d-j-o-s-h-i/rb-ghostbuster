@@ -253,6 +253,7 @@ from itertools import combinations
 MANGO = "\033[38;5;208m"
 LIME = "\033[38;5;150m"     # soft sage green - easier on the eyes than neon lime
 PURPLE = "\033[38;5;141m"
+WHITE = "\033[38;5;255m"
 RESET = "\033[0m"
 
 
@@ -288,11 +289,12 @@ def say(text="", color=None):
     print(set_color(text, color), flush=True)
 
 
-def prompt(text):
+def prompt(text, color=None):
     """Colored input prompt."""
     global _color_i
-    color = LIME if _color_i % 2 == 0 else MANGO
-    _color_i += 1
+    if color is None:
+        color = LIME if _color_i % 2 == 0 else MANGO
+        _color_i += 1
     try:
         return input(set_color(text, color)).strip()
     except EOFError:
@@ -1497,7 +1499,6 @@ def display_menu(db, original=None):
     say("  Keep a backup anyway. An extra copy never hurts.", MANGO)
     say("  TESTED ON WINDOWS ONLY, not verified on macOS or Linux yet", LIME)
     say("  " + "=" * 58, MANGO)
-    print()
 
     if db and os.path.isfile(db):
         if load_settings().get("pending_writeback"):
@@ -1509,8 +1510,6 @@ def display_menu(db, original=None):
         say("  Database: not set yet (use option 8)")
         print()
 
-    print(set_color("  Enter your choice (1-11) here:", LIME))
-    print()
     print(f"  {MANGO}1{RESET}. {LIME}Test run - answer questions, show duplicates{RESET}")
     print(f"     {LIME}(library not changed){RESET}")
     print(f"  {MANGO}2{RESET}. {LIME}Full analysis - detect and resolve duplicates{RESET}")
@@ -1523,9 +1522,6 @@ def display_menu(db, original=None):
     print(f"  {MANGO}9{RESET}. {LIME}Set/change SQLCipher key{RESET}")
     print(f"  {MANGO}10{RESET}. {LIME}Forget saved answers (ask everything again){RESET}")
     print(f"  {MANGO}11{RESET}. {LIME}Quit{RESET}")
-    print()
-    print(set_color("=" * 60, MANGO))
-    print()
 
 
 # =====================================================================
@@ -2083,7 +2079,7 @@ def main():
     db, original = started
     while True:
         display_menu(db, original)
-        choice = prompt("Enter your choice (1-11): ")
+        choice = prompt("Enter your choice (1-11) here: ", WHITE)
         if not choice:
             continue
         result = handle_menu_choice(choice, db, original)
