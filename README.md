@@ -2,6 +2,8 @@
 
 by **djoshi**
 
+<img src="screenshots/menu.png" width="452" alt="rb ghostbuster main menu">
+
 Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and lets you undo changes.
 
 Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) for opening the encrypted database.
@@ -112,38 +114,6 @@ Then you get a welcome screen that asks if rekordbox is closed, looks for your l
 `master.db` lives next to the script. If the tool found your library on startup it offers to copy it there. If it didn't, menu option 8 lets you point at it.
 
 Move the folder wherever you like. The database and settings travel with it.
-
----
-
-## What the screens look like
-
-### Welcome screen
-
-```
-============================================================
-  Welcome to rb ghostbuster v0.2.0 (by djoshi)
-  Duplicate Track Remover for rekordbox 6/7
-============================================================
-
-This program works on a copy of your rekordbox library,
-never on the original. Nothing is changed without asking you.
-
-Is rekordbox completely closed? (y/n): y
-
-Found rekordbox library at: C:\Users\<name>\AppData\Roaming\Pioneer\rekordbox\master.db
-
-Create a copy of your library into the
-rb ghostbuster folder?
-rb ghostbuster is never working on your original library.
-Create the copy now? (y/n): y
-Copying, please wait...
-Copy ready (1234 tracks): C:\path\to\rb ghostbuster\master.db
-Your original library was not touched.
-```
-
-### Main menu
-
-![rb ghostbuster main menu](screenshots/menu.png)
 
 ---
 
