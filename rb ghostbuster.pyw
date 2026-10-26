@@ -1496,8 +1496,7 @@ def display_menu(db, original=None):
     say("  to the quarantine folder yourself.")
     say("  Keep a backup anyway. An extra copy never hurts.", MANGO)
     say("  " + "=" * 58, MANGO)
-    say("  TESTED ON WINDOWS ONLY - not verified", LIME)
-    say("  on macOS or Linux yet", LIME)
+    say("  TESTED ON WINDOWS ONLY, not verified on macOS or Linux yet", LIME)
     say("  " + "=" * 58, MANGO)
     print()
 
