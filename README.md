@@ -143,36 +143,7 @@ Your original library was not touched.
 
 ### Main menu
 
-```
-============================================================
-  rb ghostbuster - Duplicate Track Remover v0.2.0 (by djoshi)
-============================================================
-
-  NOTE: rb ghostbuster works on your library DATABASE (master.db).
-  Your music files are NOT touched unless you move them to the
-  quarantine folder yourself.
-  ==========================================================
-  TESTED ON WINDOWS ONLY - not verified on macOS or Linux
-  ==========================================================
-
-  Please select an option:
-
-  1. Test run - answer questions, show duplicates (library not changed)
-  2. Full analysis - detect and resolve duplicates
-  3. Write the cleaned copy back to rekordbox
-  4. Quarantine folder (view, change, move files back)
-  5. Backup database
-  6. Restore from backup (copy or rekordbox library)
-  7. View current settings
-  8. Set/change database path
-  9. Set/change SQLCipher key
-  10. Forget saved answers (ask everything again)
-  11. Quit
-
-============================================================
-
-Enter your choice (1-11): _
-```
+![rb ghostbuster main menu](screenshots/menu.png)
 
 ---
 
@@ -245,6 +216,8 @@ rb ghostbuster/
 ├── quarantine_log.csv    # Which music file went where in quarantine
 ├── backups/              # Timestamped database backups (day-month-year-time format)
 ├── quarantine/           # Removed tracks go here (safe, not deleted)
+├── screenshots/
+│   └── menu.png          # The screenshot in this README
 ├── config/
 │   └── settings.example.json  # Example settings file
 └── .venv/                # Optional: private Python env, only created if a normal install is blocked
@@ -275,3 +248,18 @@ MIT. Do what you like with it, see [LICENSE](LICENSE).
 ---
 
 **Keep a backup anyway.** rb ghostbuster makes its own before every change, but an extra copy of your library has never hurt anyone.
+
+```
+    \|/                -----
+   - * -           //...:|::..\\
+    /|\           /.\::::|::::/.\
+   ,---.         |.:::\::|:./:::.|
+  / . . \        |:.::::\o/::.:::|
+ |. . . .|       |:::.::/o\::::.:|
+ | . . . |       |.:::/.:|::\:::.|
+  \ . . /         \./::::|::::\./
+   '---'           \\..::|:...//
+                       -----
+
+come back anytime =)
+```
