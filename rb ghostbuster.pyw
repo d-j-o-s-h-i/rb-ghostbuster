@@ -1484,16 +1484,17 @@ def display_menu(db, original=None):
     _color_i = 0
     clear_screen()
 
-    title = f"  {APP}: Rekordbox 6+7 duplicate track remover v{VERSION} "
-    width = len(title + "(by djoshi)")
-    print(set_color("=" * width, MANGO))
-    print(set_color(f"{title}{PURPLE}(by djoshi){RESET}", MANGO))
-    print(set_color("=" * width, MANGO))
+    print(set_color("=" * 60, MANGO))
+    print(set_color(f"  {APP}: Rekordbox 6+7", MANGO))
+    print(set_color(f"  duplicate track remover v{VERSION} "
+                    f"{PURPLE}(by djoshi){RESET}", MANGO))
+    print(set_color("=" * 60, MANGO))
     print()
-    say("  NOTE: rb ghostbuster begins on a copy of your rekordbox library "
-        "DATABASE (master.db). It will only be updated through option 3.")
-    say("  Your music files are NOT touched unless you move them to the")
-    say("  quarantine folder yourself.")
+    say("  NOTE: rb ghostbuster begins on a copy of your rekordbox")
+    say("  library DATABASE (master.db). It will only be updated")
+    say("  through option 3.")
+    say("  Your music files are NOT touched unless you move them")
+    say("  to the quarantine folder yourself.")
     say("  Keep a backup anyway. An extra copy never hurts.")
     say("  " + "=" * 58)
     say("  TESTED ON WINDOWS ONLY - not verified on macOS or Linux")
@@ -1512,7 +1513,8 @@ def display_menu(db, original=None):
 
     print(set_color("  Please select an option:", LIME))
     print()
-    print(f"  {MANGO}1{RESET}. {LIME}Test run - answer questions, show duplicates (library not changed){RESET}")
+    print(f"  {MANGO}1{RESET}. {LIME}Test run - answer questions, show duplicates{RESET}")
+    print(f"     {LIME}(library not changed){RESET}")
     print(f"  {MANGO}2{RESET}. {LIME}Full analysis - detect and resolve duplicates{RESET}")
     print(f"  {MANGO}3{RESET}. {LIME}Write the cleaned copy back to rekordbox{RESET}")
     print(f"  {MANGO}4{RESET}. {LIME}Quarantine folder (view, change, move files back){RESET}")
