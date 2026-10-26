@@ -1,4 +1,4 @@
-# rb ghostbuster v0.2.0
+# rb ghostbuster v0.2.0 alpha
 
 by **djoshi**
 
@@ -9,10 +9,9 @@ Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works 
 Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) for opening the encrypted database.
 
 **Download:** [rb-ghostbuster-main.zip](https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip) · Repo: https://github.com/d-j-o-s-h-i/rb-ghostbuster
+> ⚠️ **Windows only atm.** Tested on Win11. It may work on macOS and Linux as its Python but nobody has tried it there yet. Lemme know if you can!
 
-> ⚠️ **Close rekordbox first::** Quit rekordbox and rekordboxAgent before you start. The tool needs `master.db` to itself.
-
-> ⚠️ **Windows only atm** That's the only place it's been tested. It may work on macOS and Linux but nobody has tried it there yet.
+> ⚠️ **Close rekordbox first::** Quit rekordbox and rekordboxAgent before you start. The tool needs `master.db` so we're not getting inbetween a child custody fight like some of us
 
 > ⚠️ **Turn off Cloud Library Sync** And any other sync to a second device, while you're cleaning. rb ghostbuster writes straight into `master.db`, so a sync running at the same time can put the tracks right back.
 
@@ -20,11 +19,14 @@ Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jone
 
 ## What it does
 
-It reads your library, finds tracks that are really the same song, and groups them up. You pick which copy stays. The rest drop out, and their playlist spots, tags and play history go to the copy you keep.
+Like most people, i am frustrated with rekordbox (and the company as a whole). In this case, specifically how it doesn't deal with duplicates at all (which can stack up over the years in your library) and how other tools on here don't really do their job, at least for me. This is how this little program was born:::
 
-Nothing gets deleted off your disk. Music files that only the removed copies used go into a `quarantine` folder, and you can move them back later.
+rb ghostbuster reads your library database, finds tracks that are really the actually the same song, and groups them up. In hard cases, you pick which copy stays. The rest drop out, and their playlist spots, tags and play history go to the copy you keep.
 
-One thing to know before you say yes: cue points don't come along. A removed copy takes its cues, beat grid and analysis data with it, and only the copy you keep keeps its own. That's why the tool suggests the one with the most cue points. If two copies have very different cues, look before you leap.
+For example, "C:\Users\joshi\Music\0426\Just an Illusion.m4a" as well as "C:\Users\joshi\Download\just-an-illusion.mp3" exist simultaneously and you've put both of them in 5 different playlists. rb ghostbuster will find both, compare, and decide which version to keep and direct all playlist paths to one version only. See 'How Duplicate Detection Works', down this doc.
+Nothing gets deleted off your disk. Music files that only the removed entries used go into a `quarantine` folder, and you can move them back later.
+
+One thing to know before you say yes: cue points don't come along. A removed copy takes its cues, beat grid and analysis data with it, and only the copy you keep keeps its own. That's why the tool suggests the one with the most cue points. If two copies have very different cues, look before you leap. I honestly don't think merging cue points is a useful feature.
 
 None of this would read a rekordbox library without other people's work. The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database. [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer handles the encrypted SQLite part, and the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) comes from laggykiller. That one installs itself on first run. Everything else, meaning the matching, the quarantine, the backups, the undo and this whole interface, is plain Python. Thx to yall <3.
 
@@ -144,7 +146,7 @@ Move the folder wherever you like. The database and settings travel with it.
 5. Groups whatever matches using union-find
 6. Suggests a keeper and shows you the group
 
-Which copy it suggests: one that still has its file, then the most cue points, then the one in more playlists, then the higher bitrate. If two are identical in every way, `Track (1).mp3` loses to `Track.mp3`, then the shorter path wins, then whichever you imported first.
+Which copy it suggests: A. one that still has its file, B. then the most cue points, C. then the one in more playlists, D. then the higher bitrate. If two are identical in every way, `Track (1).mp3` loses to `Track.mp3`, then E. the shorter path wins, then F. whichever you imported first.
 
 Your answers go in `decisions.json`, so you won't be asked twice. Changed your mind? Option 10 forgets everything.
 
@@ -173,7 +175,7 @@ Cues, beat grids and analysis data of a **removed** copy go with it. Playlists, 
 
 ```
 rb ghostbuster/
-├── rb ghostbuster.pyw    # Main script (double-click to run)
+├── rb ghostbuster.pyw    # Main script (double-click to run on Windows)
 ├── README.md             # This file
 ├── LICENSE               # MIT license
 ├── .gitignore            # Keeps your library out of git
