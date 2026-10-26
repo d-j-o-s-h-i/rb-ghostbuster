@@ -1493,6 +1493,7 @@ def display_menu(db, original=None):
     say("  NOTE: rb ghostbuster works on your library DATABASE (master.db).")
     say("  Your music files are NOT touched unless you move them to the")
     say("  quarantine folder yourself.")
+    say("  Keep a backup anyway. An extra copy never hurts.")
     say("  " + "=" * 58)
     say("  TESTED ON WINDOWS ONLY - not verified on macOS or Linux")
     say("  " + "=" * 58)
