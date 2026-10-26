@@ -2,7 +2,7 @@
 
 by **djoshi**
 
-Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and there's an undo.
+Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and lets you undo changes.
 
 Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) for opening the encrypted database.
 
@@ -20,17 +20,17 @@ Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jone
 
 It reads your library, finds tracks that are really the same song, and groups them up. You pick which copy stays. The rest come out, and their playlist spots, tags and play history go to the copy you keep.
 
-Nothing gets deleted off your disk. Music files that only the removed copies used go into a `quarantine/` folder, and you can move them back later.
+Nothing gets deleted off your disk. Music files that only the removed copies used go into a `quarantine` folder, and you can move them back later.
 
 One thing to know before you say yes: cue points don't come along. A removed copy takes its cues, beat grid and analysis data with it, and only the copy you keep keeps its own. That's why the tool suggests the one with the most cue points. If two copies have very different cues, look before you leap.
 
-None of this would read a rekordbox library without other people's work. The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database. [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer handles the encrypted SQLite part, and the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) comes from laggykiller. That one installs itself on first run. Everything else, meaning the matching, the quarantine, the backups, the undo and this whole interface, is plain Python. Thanks to both.
+None of this would read a rekordbox library without other people's work. The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database. [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer handles the encrypted SQLite part, and the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) comes from laggykiller. That one installs itself on first run. Everything else, meaning the matching, the quarantine, the backups, the undo and this whole interface, is plain Python. Thx to yall <3.
 
 Lemme know how we can integrate rb-ghostbuster into your tool =)
 
 ---
 
-## Installation (noob-friendly)
+## Installation (noob-proof i hope)
 
 All you need is Python. The one library it needs installs itself the first time you run it.
 
@@ -78,7 +78,7 @@ git clone https://github.com/d-j-o-s-h-i/rb-ghostbuster.git
 cd rb-ghostbuster
 ```
 
-To update a clone later, `git pull`. Your `master.db`, `settings.json`, `decisions.json`, `backups/` and `quarantine/` are all ignored by git, so pulling won't touch your library or your answers.
+To update a clone later, `git pull`. Your `master.db`, `settings.json`, `decisions.json`, `backups` and `quarantine` are all ignored by git, so pulling won't touch your library or your answers.
 
 </details>
 
