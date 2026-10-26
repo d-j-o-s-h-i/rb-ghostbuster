@@ -289,6 +289,17 @@ def say(text="", color=None):
     print(set_color(text, color), flush=True)
 
 
+def tuck_flower(answer):
+    """Close the flower around the answer just typed, on the same line."""
+    try:
+        if not (sys.stdin and sys.stdin.isatty()):
+            return
+        # one line up, then just past the answer
+        print(f"\033[A\033[{6 + len(answer)}G{LIME}✿{RESET}", flush=True)
+    except Exception:
+        pass
+
+
 def prompt(text, color=None):
     """Colored input prompt."""
     global _color_i
@@ -1490,7 +1501,6 @@ def display_menu(db, original=None):
     print(set_color(f"  {APP} v{VERSION} {PURPLE}(by djoshi){RESET}:", MANGO))
     print(set_color("  Rekordbox 6+7 duplicate track remover", LIME))
     print(set_color("≈" * 60, MANGO))
-    print()
     say("  NOTE: rb ghostbuster begins on a copy of your rekordbox")
     say("  library DATABASE (master.db). It will only be updated")
     say("  through option 3.")
@@ -2079,7 +2089,9 @@ def main():
     db, original = started
     while True:
         display_menu(db, original)
-        choice = prompt("Enter your choice (1-11) here: ", WHITE)
+        print(set_color("  Put your choice (1-11) here and hit Enter:", WHITE))
+        choice = prompt(f"  {LIME}✿{WHITE} ", WHITE)
+        tuck_flower(choice)
         if not choice:
             continue
         result = handle_menu_choice(choice, db, original)
