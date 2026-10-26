@@ -2,27 +2,29 @@
 
 by **djoshi**
 
-Remove duplicate tracks from your rekordbox 6/7 music library — safely, with backups and undo.
+Finds duplicate tracks in your rekordbox 6/7 library and clears them out. Works on a copy, backs up first, and there's an undo.
 
-Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) for encrypted SQLite access.
+Built on [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones and [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) for opening the encrypted database.
 
 **Download:** [rb-ghostbuster-main.zip](https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip) · Repo: https://github.com/d-j-o-s-h-i/rb-ghostbuster
 
-> ⚠️ **Important:** Close rekordbox **and rekordboxAgent** before running this tool. It needs exclusive access to your `master.db` database.
+> ⚠️ **Close rekordbox first.** Quit rekordbox and rekordboxAgent before you start. The tool needs `master.db` to itself.
 
-> ⚠️ **Platform Notice:** rb ghostbuster has been **tested on Windows only**. macOS and Linux support is **not verified** — the script may work but has not been tested on those platforms.
+> ⚠️ **Windows only, for now.** That's the only place it's been tested. It may work on macOS and Linux but nobody has tried it there yet.
 
-> ⚠️ **Cloud Library Sync:** turn off rekordbox's Cloud Library Sync (and any other sync to a second device) while you clean your library. rb ghostbuster writes straight into `master.db`; a sync running at the same time can bring removed tracks back.
+> ⚠️ **Turn off Cloud Library Sync.** And any other sync to a second device, while you're cleaning. rb ghostbuster writes straight into `master.db`, so a sync running at the same time can put the tracks right back.
 
 ---
 
 ## What it does
 
-rb ghostbuster scans your rekordbox library for duplicate tracks using title, artist, length, and other metadata. It groups duplicates together and lets you pick which one to keep. The rest are safely quarantined (moved to a `quarantine/` folder — not deleted), and playlist entries, tags and play history are reassigned to the kept track. An undo option is available if you change your mind.
+It reads your library, finds tracks that are really the same song, and groups them up. You pick which copy stays. The rest come out, and their playlist spots, tags and play history go to the copy you keep.
 
-**Cue points do not move.** When a copy is removed, its cue points, beat grid and analysis data go with it — the copy you keep keeps its own cues. That is why the tool recommends the copy with the most cue points. Pick carefully if two copies have very different cues.
+Nothing gets deleted off your disk. Music files that only the removed copies used go into a `quarantine/` folder, and you can move them back later.
 
-Built on other people's work: the table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database schema; [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer, packaged as the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) by laggykiller, opens the encrypted `master.db` and is installed automatically on first run. Everything else — duplicate matching, quarantine, backups, undo, the interface — is the Python standard library. Thanks to both.
+One thing to know before you say yes: cue points don't come along. A removed copy takes its cues, beat grid and analysis data with it, and only the copy you keep keeps its own. That's why the tool suggests the one with the most cue points. If two copies have very different cues, look before you leap.
+
+None of this would read a rekordbox library without other people's work. The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database. [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer handles the encrypted SQLite part, and the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) comes from laggykiller. That one installs itself on first run. Everything else, meaning the matching, the quarantine, the backups, the undo and this whole interface, is plain Python. Thanks to both.
 
 Lemme know how we can integrate rb-ghostbuster into your tool =)
 
@@ -30,44 +32,42 @@ Lemme know how we can integrate rb-ghostbuster into your tool =)
 
 ## Installation (noob-friendly)
 
-You only need **Python**. Everything else installs automatically the first time you run it.
+All you need is Python. The one library it needs installs itself the first time you run it.
 
-### Step 1: Install Python (if you don't have it)
+### Step 1: Get Python
 
 **Windows:**
 1. Go to [python.org/downloads](https://www.python.org/downloads/)
-2. Download the latest Python 3 installer for Windows
-3. **Important:** Check the box **"Add Python to PATH"** during installation
-4. Click Install Now
+2. Grab the latest Python 3 installer
+3. Tick **"Add Python to PATH"** on the first screen. Don't skip that one.
+4. Hit Install Now
 
 **macOS / Linux:**
-Python is usually already there. You check it in a text window called **Terminal** — that is just an app where you type commands and press Enter.
+Python is usually already there. You check it in Terminal, which is just a window where you type commands.
 
-1. Open **Terminal**:
-   - **macOS:** press `Cmd + Space`, type `Terminal`, press Enter. (Or Finder → Applications → Utilities → Terminal.)
-   - **Linux:** press `Ctrl + Alt + T`, or open your apps menu and search for **Terminal**.
-2. Type this in the Terminal window and press Enter:
+1. Open Terminal:
+   - **macOS:** `Cmd + Space`, type `Terminal`, press Enter.
+   - **Linux:** `Ctrl + Alt + T`, or find Terminal in your app menu.
+2. Type this and press Enter:
 
    ```bash
    python3 --version
    ```
 
-3. Look at the answer:
-   - **`Python 3.x.x`** (for example `Python 3.11.4`) → you are ready, go to Step 2.
-   - **`command not found`** → install Python first from [python.org/downloads](https://www.python.org/downloads/) (macOS), or from your app store / package manager (Linux), then run the command again.
+3. Read the answer:
+   - Something like `Python 3.11.4` means you're good, go to Step 2.
+   - `command not found` means install Python first, then try again.
 
----
+### Step 2: Download it
 
-### Step 2: Download rb ghostbuster
+1. Open **https://github.com/d-j-o-s-h-i/rb-ghostbuster**
+2. Click the green **Code** button, then **Download ZIP**
+3. Extract the ZIP somewhere you'll remember. On Windows, right-click it and pick **Extract All**.
+4. Open the folder you just extracted
 
-1. Open **https://github.com/d-j-o-s-h-i/rb-ghostbuster** in your browser
-2. Click the green **Code** button (top right of the file list) → **Download ZIP**
-3. Extract the ZIP to a folder you'll remember — right-click the ZIP → **Extract All** on Windows
-4. Open that folder
+That's the whole download. No installer, no admin rights, nothing put anywhere else on your machine.
 
-That is the whole download: no installer, no admin rights, nothing outside the folder.
-
-**Direct link to the ZIP:**
+**Or grab the ZIP straight from here:**
 https://github.com/d-j-o-s-h-i/rb-ghostbuster/archive/refs/heads/main.zip
 
 <details>
@@ -78,49 +78,40 @@ git clone https://github.com/d-j-o-s-h-i/rb-ghostbuster.git
 cd rb-ghostbuster
 ```
 
-To update an existing clone later: `git pull`. Your `master.db`, `settings.json`, `decisions.json`, `backups/` and `quarantine/` are ignored by git, so a pull never touches your library or your answers.
+To update a clone later, `git pull`. Your `master.db`, `settings.json`, `decisions.json`, `backups/` and `quarantine/` are all ignored by git, so pulling won't touch your library or your answers.
 
 </details>
 
----
+### Step 3: Run it
 
-### Step 3: Run the tool
+**Windows:** open the folder and double-click `rb ghostbuster.pyw`. A window opens on its own.
 
-**Windows (easiest):**
-Open the rb ghostbuster folder and **double-click `rb ghostbuster.pyw`**. A window opens by itself.
+If nothing happens, click the address bar in that folder, type `cmd`, press Enter, then run:
 
-If double-clicking does nothing, open the folder, click the address bar, type `cmd` and press Enter, then run:
 ```cmd
 python "rb ghostbuster.pyw"
 ```
 
 **macOS / Linux:**
-1. Open **Terminal** (macOS: `Cmd + Space`, type `Terminal`, Enter — Linux: `Ctrl + Alt + T`).
-2. Type `cd ` (with a space after `cd`), then **drag the rb ghostbuster folder** from Finder or your file manager into the Terminal window. Press Enter. You are now inside that folder.
-3. Type this and press Enter:
+1. Open Terminal.
+2. Type `cd ` with a space after it, drag the rb ghostbuster folder into the window, press Enter.
+3. Then run:
 
    ```bash
    python3 "rb ghostbuster.pyw"
    ```
 
-   The tool runs right there in the Terminal. Leave that window open while it works.
+   Leave that Terminal window open while it's running.
 
-The first time you run it, the missing library (`sqlcipher3-wheels`) installs automatically. On Linux and on Homebrew Python, the system may block normal installs with an `externally-managed-environment` message; rb ghostbuster handles this on its own — it retries with a user-only override and, if that is still refused, creates a private `.venv` folder inside the rb ghostbuster folder. Nothing is installed system-wide.
+First run installs `sqlcipher3-wheels` for you. On Linux, and on Homebrew Python, the system sometimes blocks installs with an `externally-managed-environment` message. rb ghostbuster deals with that itself: it retries with a user-only override, and if that's still refused it makes a private `.venv` inside its own folder. Nothing goes system-wide.
 
-You'll see a welcome screen that:
+Then you get a welcome screen that asks if rekordbox is closed, looks for your library in the usual place, offers to copy `master.db` into the folder, and drops you in the menu.
 
-1. Asks if rekordbox is closed (it must be)
-2. Looks for your rekordbox library at the standard location
-3. Offers to copy `master.db` into the project folder
-4. Then opens the main menu
+### Step 4: Use it
 
----
+`master.db` lives next to the script. If the tool found your library on startup it offers to copy it there. If it didn't, menu option 8 lets you point at it.
 
-### Step 4: Use the tool
-
-The database file (`master.db`) lives in the same folder as the script. If rb ghostbuster found your rekordbox library on startup, it offers to copy it there. If not, use **menu option 8** to point to your `master.db` manually.
-
-Wherever you move the project folder, the database and settings stay with it.
+Move the folder wherever you like. The database and settings travel with it.
 
 ---
 
@@ -189,32 +180,32 @@ Enter your choice (1-11): _
 
 | # | Option | What it does |
 |---|--------|--------------|
-| 1 | Test run | Loads your library, finds all duplicate groups, shows them, and asks only about tracks it is unsure of. Your answers are saved for option 2, but **the library is never changed** |
-| 2 | Full analysis | Same detection, then asks which track to keep in each unclear group, prints every group with the copy that stays and the copies that go, applies the removals and moves playlists, tags and play history to the kept track |
-| 3 | Write the cleaned copy back to rekordbox | Copies your cleaned library over the original rekordbox `master.db`. It asks you to type `YES` first (WARNING: destructive action) |
-| 4 | Quarantine folder | See quarantined tracks, set a custom quarantine location, move the leftover duplicate files there, or move quarantined files back |
-| 5 | Backup database | Creates a timestamped backup before making changes |
-| 6 | Restore from backup | Restores your database from a previous backup — into the working copy, or into the real rekordbox library to undo option 3 |
-| 7 | View current settings | Shows paths, backup folder, quarantine folder, key status and whether the copy is up to date |
-| 8 | Set/change database path | Point the tool at another `master.db` (and offer to copy it into the project folder) |
-| 9 | Set/change SQLCipher key | Change the encryption key for your rekordbox database |
-| 10 | Forget saved answers | Moves `decisions.json` aside so options 1 and 2 ask every question again, including the ones you answered "no" to |
-| 11 | Quit | Exits the program |
+| 1 | Test run | Finds every duplicate group and shows you the list. It asks about the tracks it isn't sure of and keeps your answers for option 2, but it never writes to the library |
+| 2 | Full analysis | Same detection, plus it asks which copy to keep in each unclear group, prints the whole plan, then applies it: duplicates out, playlists, tags and play history moved to the keeper |
+| 3 | Write the cleaned copy back to rekordbox | Copies the cleaned library over the real `master.db`. You have to type `YES` first. This is the destructive one |
+| 4 | Quarantine folder | Shows what's in quarantine, lets you change the folder, move leftover duplicate files in, or move them back out |
+| 5 | Backup database | Makes a timestamped backup right now |
+| 6 | Restore from backup | Puts an earlier backup back, either into the working copy or into the real library (that's the undo for option 3) |
+| 7 | View current settings | Paths, backup folder, quarantine folder, key status, and whether the copy is current |
+| 8 | Set/change database path | Point it at a different `master.db`, with the option to copy it into the folder first |
+| 9 | Set/change SQLCipher key | For libraries that don't use the standard key |
+| 10 | Forget saved answers | Moves `decisions.json` aside so it asks everything again, including the ones you said "no" to |
+| 11 | Quit | Closes the program |
 
 ---
 
 ## How Duplicate Detection Works
 
-1. Loads all tracks from your rekordbox `master.db`
-2. Normalizes titles (strips accents, lowercases, removes special chars)
-3. Matches tracks by full title OR core title (ignores remix/edit tags in parentheses)
-4. Checks artist similarity, file path, and track length (±3 seconds tolerance)
-5. Groups duplicates together using a smart union-find algorithm
-6. Suggests which copy to keep and presents the groups to you
+1. Reads every track out of `master.db`
+2. Cleans up the titles: lowercases them, strips accents and punctuation
+3. Matches on the full title, or on the "core" title with remix and edit tags in brackets ignored
+4. Compares artist, file path and length, with 3 seconds of wiggle room on the length
+5. Groups whatever matches using union-find
+6. Suggests a keeper and shows you the group
 
-The recommended copy is the one whose file still exists, then the one with the most cue points, then the one in more playlists, then the higher bitrate. If two copies are still identical in every respect, a name like `Track (1).mp3` or `Track - Copy.mp3` loses to `Track.mp3`, the shorter file path wins after that, and the file you imported first wins last of all.
+Which copy it suggests: one that still has its file, then the most cue points, then the one in more playlists, then the higher bitrate. If two are identical in every way, `Track (1).mp3` loses to `Track.mp3`, then the shorter path wins, then whichever you imported first.
 
-Decisions are saved in `decisions.json` so you're never asked about the same group twice. If you change your mind, menu option 10 forgets them.
+Your answers go in `decisions.json`, so you won't be asked twice. Changed your mind? Option 10 forgets everything.
 
 ---
 
@@ -222,18 +213,18 @@ Decisions are saved in `decisions.json` so you're never asked about the same gro
 
 | Feature | Description |
 |---------|-------------|
-| **Backup first** | A timestamped backup of `master.db` is created before any changes |
-| **Backup format** | One folder per backup, named day-month-year-time (e.g. `backups/26-10-2026_17-30-00/`), containing `master.db` |
-| **Backup cleanup** | The newest 10 backups are kept, and the newest 10 safety copies of your real library are counted separately, so routine backups can never push those out |
-| **Safety backup** | When replacing the original rekordbox library, a safety backup of the original is made first |
-| **Atomic write-back** | The cleaned library is written to a temporary file, checked, and only then swapped in — an interrupted write can never leave a half-written `master.db` |
-| **Quarantine, not delete** | Music files that only the removed copies used are moved to `quarantine/`, never deleted |
-| **Undo** | Option #6 restores your database from any backup |
-| **Test run** | Option #1 shows duplicates and never modifies your library |
-| **Playlist integrity** | Playlist entries, tags and play history move to the kept track; entries are renumbered and checked for orphans before saving |
-| **One window at a time** | A second copy of the program refuses to start, so two windows can never edit the same library |
+| **Backup first** | A timestamped backup of `master.db` is made before anything changes |
+| **Backup format** | One folder per backup, named day-month-year_time (e.g. `backups/26-10-2026_17-30-00/`), with `master.db` inside |
+| **Backup cleanup** | The newest 10 are kept, and the newest 10 safety copies of your real library are counted separately, so normal backups can't push those out |
+| **Safety backup** | Replacing the real library always backs it up first |
+| **Atomic write-back** | The cleaned library goes to a temp file, gets checked, then swaps in. If it dies halfway you still have a working `master.db` |
+| **Quarantine, not delete** | Files that only the removed copies used go to `quarantine/`, never deleted |
+| **Undo** | Option 6 puts any backup back |
+| **Test run** | Option 1 looks and asks, never writes |
+| **Playlist integrity** | Playlist entries, tags and play history move to the keeper, positions are renumbered and checked for orphans before saving |
+| **One window at a time** | A second copy refuses to start, so two windows can't edit the same library |
 
-Cue points, beat grids and analysis data of a **removed** copy are deleted along with it. Playlists, tags and play history are moved to the kept copy.
+Cues, beat grids and analysis data of a **removed** copy go with it. Playlists, tags and history move to the keeper.
 
 ---
 
@@ -259,7 +250,7 @@ rb ghostbuster/
 └── .venv/                # Optional: private Python env, only created if a normal install is blocked
 ```
 
-`settings.json` holds your SQLCipher key and your paths. It is yours — don't share or commit it.
+`settings.json` holds your key and your paths. Keep it to yourself.
 
 ---
 
@@ -267,20 +258,20 @@ rb ghostbuster/
 
 | Problem | Solution |
 |---------|----------|
-| `"python" is not recognized` | Install Python and check "Add Python to PATH" during installation |
-| Database not found | Close rekordbox, then use menu option 8 to point to your `master.db` |
-| Can't open database | rekordbox and rekordboxAgent must be **closed** before running rb ghostbuster |
-| Could not read tracks | The file is not a rekordbox `master.db`, or your library uses a different SQLCipher key (menu option 9) |
-| Double-click doesn't open a window | Run from terminal instead: `python "rb ghostbuster.pyw"` |
-| "already running in another window" | Close the other rb ghostbuster window — the lock is released when it exits |
-| Asked about the same songs again | Menu option 10 restores the questions; delete `decisions_old_*.json` to drop the old answers for good |
+| `"python" is not recognized` | Install Python and tick "Add Python to PATH" |
+| Database not found | Close rekordbox, then use menu option 8 to point at your `master.db` |
+| Can't open database | rekordbox and rekordboxAgent both need to be closed |
+| Could not read tracks | Not a rekordbox `master.db`, or your library uses a different SQLCipher key (menu option 9) |
+| Double-click does nothing | Run it from a terminal instead: `python "rb ghostbuster.pyw"` |
+| "already running in another window" | Close the other window. The lock clears when it exits |
+| Asked about the same songs again | Option 10 restores the questions. Delete `decisions_old_*.json` if you want the old answers gone for good |
 
 ---
 
 ## License
 
-MIT License — free to use, modify, and distribute. See [LICENSE](LICENSE).
+MIT. Do what you like with it, see [LICENSE](LICENSE).
 
 ---
 
-**Stay safe:** Always keep a backup of your rekordbox library before making bulk changes. rb ghostbuster creates one automatically, but an extra copy never hurts.
+**Keep a backup anyway.** rb ghostbuster makes its own before every change, but an extra copy of your library has never hurt anyone.
