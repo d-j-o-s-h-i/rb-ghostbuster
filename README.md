@@ -29,7 +29,8 @@ Nothing gets deleted off your disk. Music files that only the removed entries us
 
 One thing to know before you say yes: cue points don't come along. A removed copy takes its cues, beat grid and analysis data with it, and only the copy you keep keeps its own. That's why the tool suggests the one with the most cue points. If two copies have very different cues, look before you leap. I honestly don't think merging cue points is a useful feature.
 
-None of this would read a rekordbox library without other people's work. The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database. [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer handles the encrypted SQLite part, and the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) comes from laggykiller. That one installs itself on first run. Everything else, meaning the matching, the quarantine, the backups, the undo and this whole interface, is plain Python. Thx to yall <3.
+None of this would read a rekordbox library without other people's work. The table and column names come from [pyrekordbox](https://github.com/dylanljones/pyrekordbox) by Dylan Jones, which documents the rekordbox 6/7 database. [sqlcipher3](https://github.com/coleifer/sqlcipher3) by Charles Leifer handles the encrypted SQLite part, and the prebuilt [sqlcipher3-wheels](https://pypi.org/project/sqlcipher3-wheels/) comes from laggykiller. That one installs itself on first run. Thx to yall <3.
+Everything else, meaning the matching, the quarantine, the backups, the undo and this whole interface, is plain Python. 
 
 Lemme know how we can integrate rb-ghostbuster into your tool =)
 
