@@ -1490,7 +1490,8 @@ def display_menu(db, original=None):
     print(set_color(f"{title}{PURPLE}(by djoshi){RESET}", MANGO))
     print(set_color("=" * width, MANGO))
     print()
-    say("  NOTE: rb ghostbuster works on your library DATABASE (master.db).")
+    say("  NOTE: rb ghostbuster begins on a copy of your rekordbox library "
+        "DATABASE (master.db). It will only be updated through option 3.")
     say("  Your music files are NOT touched unless you move them to the")
     say("  quarantine folder yourself.")
     say("  Keep a backup anyway. An extra copy never hurts.")
