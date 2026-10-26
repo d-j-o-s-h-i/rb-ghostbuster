@@ -1484,10 +1484,11 @@ def display_menu(db, original=None):
     _color_i = 0
     clear_screen()
 
-    print(set_color("=" * 60, MANGO))
-    print(set_color(f"  {APP} - Duplicate Track Remover v{VERSION} "
-                    f"{PURPLE}(by djoshi){RESET}", MANGO))
-    print(set_color("=" * 60, MANGO))
+    title = f"  {APP}: Rekordbox 6+7 duplicate track remover v{VERSION} "
+    width = len(title + "(by djoshi)")
+    print(set_color("=" * width, MANGO))
+    print(set_color(f"{title}{PURPLE}(by djoshi){RESET}", MANGO))
+    print(set_color("=" * width, MANGO))
     print()
     say("  NOTE: rb ghostbuster works on your library DATABASE (master.db).")
     say("  Your music files are NOT touched unless you move them to the")
